@@ -15,7 +15,7 @@ The network uses a **3 → 4 → 1 architecture**:
 - **Output activation:** linear
 - **Loss:** \(\frac{1}{2}(\hat{y}-y)^2\)
 
-The notebook uses the first Iris data point for the numerical verification:
+The notebook uses the first Iris data point for numerical verification:
 
 - Sepal length: 5.1
 - Sepal width: 3.5
@@ -30,41 +30,22 @@ A fixed random seed (`20`) is used so the initialized weights are reproducible.
 
 I computed and verified:
 
-1. Hidden-layer pre-activations
-
-   \[
-   \mathbf{a}^{(1)} = W^{(1)}\mathbf{x} + \mathbf{b}^{(1)}
-   \]
-
-2. Hidden-layer activations
-
-   \[
-   \mathbf{z}^{(1)} = \tanh(\mathbf{a}^{(1)})
-   \]
-
-3. Output-layer prediction
-
-   \[
-   a^{(2)} = W^{(2)}\mathbf{z}^{(1)} + b^{(2)}
-   \]
-
-4. Squared-error loss
-
-   \[
-   E = \frac{1}{2}(\hat{y}-y)^2
-   \]
+1. Hidden-layer pre-activations: `a1 = W1x + b1`
+2. Hidden-layer activations: `z1 = tanh(a1)`
+3. Output-layer prediction: `a2 = W2z1 + b2`
+4. Squared-error loss: `E = 1/2(ŷ-y)^2`
 
 ### Backpropagation
 
 I derived and verified gradients using the chain rule, including:
 
-- \(\frac{\partial E}{\partial a^{(2)}}\)
-- \(\frac{\partial E}{\partial W^{(2)}}\)
-- \(\frac{\partial E}{\partial b^{(2)}}\)
+- `∂E/∂a2`
+- `∂E/∂W2`
+- `∂E/∂b2`
 - propagation of the output error back to the hidden layer
 - derivative of `tanh`
-- \(\frac{\partial E}{\partial W^{(1)}}\)
-- \(\frac{\partial E}{\partial \mathbf{b}^{(1)}}\)
+- `∂E/∂W1`
+- `∂E/∂b1`
 
 The handwritten work shows the matrix arithmetic, dimensional checks, derivative steps, and numerical verification used alongside the notebook.
 
@@ -95,18 +76,15 @@ The goal of the project is not to train a production model, but to understand an
 ```text
 .
 ├── FinalLinearProjectCode.ipynb
-├── handwritten-work/
-│   ├── 01-manual-derivation.jpg
-│   ├── 02-manual-derivation.jpg
-│   ├── ...
-│   └── 11-manual-derivation.jpg
+├── HANDWRITTEN_WORK.md
 ├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
 ## Handwritten Work
 
-The `handwritten-work/` directory contains the manual derivations used to verify the Python results. These pages include:
+`HANDWRITTEN_WORK.md` documents the 11 handwritten derivation pages that accompanied the original submission. Those pages covered:
 
 - network architecture and dimension verification
 - weight initialization
@@ -116,7 +94,7 @@ The `handwritten-work/` directory contains the manual derivations used to verify
 - chain-rule derivations
 - `tanh` derivative work
 - gradients for the output and hidden layers
-- final comparison tables between manual and computed values
+- comparison of manual calculations with computed values
 
 ## Running the Notebook
 
